@@ -296,7 +296,7 @@ def run_full_validation():
             slope_f, r_f, se_f = np.nan, np.nan, np.nan
 
         theoretical_asian = 2 * H + 1
-        theoretical_euro = 2 * H - 1
+        theoretical_euro = 2 * H
 
         print(f"\n  Malliavin method (Asian kernel τ^{{-1/2}}):")
         print(f"    beta_emp = {slope_m:.3f} ± {se_m:.3f}  (R2 = {r_m**2:.4f})")
