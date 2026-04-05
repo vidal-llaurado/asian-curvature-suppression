@@ -2,55 +2,115 @@
 
 Numerical validation of the short-maturity scaling of ATM implied-volatility curvature for Asian options under rough Bachelier dynamics, using Malliavin methods and controlled Monte Carlo experiments.
 
----
 
 #### Target result
 
 The ATM Bachelier implied-volatility curvature of an Asian option satisfies
 
-$$\partial_{kk}^2 I_A(T, 0) \sim C(H, \sigma_0, \nu, \rho)\, T^{2H+1}, \qquad T \downarrow 0,$$
+$$
+\partial_{kk}^2 I_A(T, 0) \sim C(H, \sigma_0, \nu, \rho) T^{2H+1}, \qquad T \downarrow 0,
+$$
 
-which is one power of $T$ slower than the European curvature $\partial_{kk}^2 I_E(T, 0) \sim \tilde{C}(H, \sigma_0, \nu, \rho)\, T^{2H}$.
+which is one power of $T$ slower than the European curvature
+
+$$
+\partial_{kk}^2 I_E(T, 0) \sim \tilde{C}(H, \sigma_0, \nu, \rho) T^{2H}.
+$$
 
 This suppression is a consequence of time-averaging. The Asian payoff applies an order-one integration operator to the variance path, raising its Sobolev regularity by $+1$ and shifting the curvature exponent accordingly.
+
 
 #### Model
 
 Bachelier–rough Bergomi dynamics under $\mathbb{Q}$:
 
-$$dS_t = \sigma_t\, dW_t, \qquad \sigma_t^2 = \sigma_0^2 \exp\!\Big(\nu \sqrt{2H}\, B_t^H - \tfrac{1}{2}\nu^2 t^{2H}\Big),$$
+$$
+dS_t = \sigma_t dW_t, \qquad
+\sigma_t^2 = \sigma_0^2 \exp \left(\nu \sqrt{2H} B_t^H - \tfrac{1}{2}\nu^2 t^{2H}\right),
+$$
 
 where $B^H$ is Riemann–Liouville fractional Brownian motion with Hurst parameter $H \in (0, \tfrac{1}{2})$, and $W$ is correlated with $B^H$ via $\rho \in (-1, 0)$.
 
-The Asian payoff depends on the time-average $A_T = T^{-1}\!\int_0^T S_t\, dt$. The quantity of interest is the ATM curvature $\kappa_A(T) := \partial_{kk}^2 I_A(T, k)\big|_{k=0}$.
+The Asian payoff depends on the time-average
+
+$$
+A_T = T^{-1} \int_0^T S_t dt.
+$$
+
+The quantity of interest is the ATM curvature
+
+$$
+\kappa_A(T) := \left.\partial_{kk}^2 I_A(T, k)\right|_{k=0}.
+$$
+
 
 #### Origin of the extra power of $T$
 
-The effective asymptotic Asian diffusion coefficient is $\varphi_t = \sigma_t (T - t) / T$. The curvature involves quadratic functionals of $\varphi$: relative to the European case, each occurrence of $\sigma_t$ is replaced by $\sigma_t(T - t)/T$, introducing additional time weights.
+The effective asymptotic Asian diffusion coefficient is
+
+$$
+\varphi_t = \sigma_t \frac{T - t}{T}.
+$$
+
+The curvature involves quadratic functionals of $\varphi$: relative to the European case, each occurrence of $\sigma_t$ is replaced by $\sigma_t (T - t)/T$, introducing additional time weights.
 
 At second order, four powers of $(T - t)/T$ appear. Two are absorbed by the time integration over $[0, T]$, and two by the structure of the curvature kernel. The net balance is a factor of $T^1$.
 
-This is the semigroup composition $\mathcal{V}_1 \circ \mathcal{V}_{H+1/2} = c\, \mathcal{V}_{H+3/2}$. The averaging operator raises the effective regularity by exactly $+1$, independently of $H$, producing the shift from $2H$ to $2H + 1$ in the curvature exponent.
+This corresponds to the semigroup composition
+
+$$
+\mathcal{V}*1 \circ \mathcal{V}*{H+1/2} = c \mathcal{V}_{H+3/2}.
+$$
+
+The averaging operator raises the effective regularity by exactly $+1$, independently of $H$, producing the shift from $2H$ to $2H + 1$ in the curvature exponent.
+
 
 #### Prefactor
 
 The leading-order prefactor is
 
-$$C(H, \sigma_0, \nu, \rho) = \frac{3\sqrt{6\pi}\, \rho^2 \nu^2 H\, \sigma_0}{2H + \tfrac{5}{2}} \cdot \mathcal{C}(H),$$
+$$
+C(H, \sigma_0, \nu, \rho) =
+\frac{3\sqrt{6\pi} \rho^2 \nu^2 H \sigma_0}{2H + \tfrac{5}{2}} \cdot \mathcal{C}(H),
+$$
 
 where the geometric constant is
 
-$$\mathcal{C}(H) = B\!\left(H + \tfrac{1}{2},\, 3\right) B\!\left(H + \tfrac{1}{2},\, H + \tfrac{9}{2}\right) + 2K(H).$$
+$$
+\mathcal{C}(H) =
+B \left(H + \tfrac{1}{2}, 3\right)
+B \left(H + \tfrac{1}{2}, H + \tfrac{9}{2}\right) + 2K(H).
+$$
 
 The term $K(H)$ is a two-dimensional rough-kernel contribution that does not factorise into Beta functions for general $H$:
 
-$$K(H) = \int_0^1 \!\int_0^1 (1 - \xi)^{H+7/2}\, t^{H-1/2}\, (1-t)^2\, \bigl(\xi + (1-\xi)t\bigr)^{H-1/2}\, dt\, d\xi.$$
+$$
+K(H) =
+\int_0^1 \int_0^1
+(1 - \xi)^{H + 7/2}
+t^{H - 1/2}
+(1 - t)^2
+\bigl(\xi + (1 - \xi)t\bigr)^{H - 1/2}
+ dt d\xi.
+$$
 
-The non-factorisation arises because the two fractional powers $(u - r)^{H-1/2}(u - s)^{H-1/2}$ in the second Malliavin derivative create simultaneous dependence on both reference points.
+The non-factorisation arises because the two fractional powers
+$(u - r)^{H - 1/2}(u - s)^{H - 1/2}$
+in the second Malliavin derivative create simultaneous dependence on both reference points.
 
-At $H = \tfrac{1}{2}$: $K(\tfrac{1}{2}) = \tfrac{1}{15}$ and $\mathcal{C}(\tfrac{1}{2}) = \tfrac{1}{5}$.
+At $H = \tfrac{1}{2}$:
 
-In the implementation, $\mathcal{C}(H)$ is evaluated via high-order quadrature, the full prefactor is computed explicitly, and Monte Carlo estimates of $\kappa_A(T)$ are compared against $C(H, \sigma_0, \nu, \rho)\, T^{2H+1}$.
+$$
+K \left(\tfrac{1}{2}\right) = \tfrac{1}{15}, \qquad
+\mathcal{C} \left(\tfrac{1}{2}\right) = \tfrac{1}{5}.
+$$
+
+In the implementation, $\mathcal{C}(H)$ is evaluated via high-order quadrature, the full prefactor is computed explicitly, and Monte Carlo estimates of $\kappa_A(T)$ are compared against
+
+$$
+C(H, \sigma_0, \nu, \rho) T^{2H+1}.
+$$
+
 
 ### Numerical methodology
 
