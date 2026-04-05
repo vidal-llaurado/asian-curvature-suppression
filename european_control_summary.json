@@ -1,0 +1,60 @@
+{
+  "all_primary_checks_pass": false,
+  "checks": {
+    "euro_beta_error_le_0p35": false,
+    "fd_blowup_fraction_le_0p25": false
+  },
+  "config": {
+    "H_values": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4
+    ],
+    "T_values": [
+      0.1,
+      0.05,
+      0.025,
+      0.0125,
+      0.00625
+    ],
+    "antithetic": true,
+    "fd_bump_frac": 0.1,
+    "fd_bump_grid": [
+      0.1,
+      0.2,
+      0.4
+    ],
+    "fd_local_poly_degree": 2,
+    "fd_seed_base": 42,
+    "fd_smile_shifts": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "fd_stability_neighbor_logtol": 1.1,
+    "fd_stability_rel_se_max": 0.75,
+    "mode": "full",
+    "n_paths_fd": 6000,
+    "n_paths_mall": 5000,
+    "n_seeds_fd": 7,
+    "n_steps": 256,
+    "nu": 0.5,
+    "output_dir": "outputs",
+    "rho": -0.7,
+    "rng_seed_mall": 42,
+    "sigma0": 0.3,
+    "use_numba": true
+  },
+  "fd_blowup_fraction": 1.0,
+  "max_abs_beta_error_euro_fd": 1.6520433791540392,
+  "median_abs_beta_error_euro_fd": 1.4417744983947751,
+  "n_exponent_rows": 8,
+  "n_raw_rows": 40
+}
